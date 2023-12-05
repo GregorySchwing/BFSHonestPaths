@@ -1,6 +1,7 @@
 
 #include "GreedyMatcher.cuh"
 
+namespace BFSHonestPaths {
 
 int is_less_than_0::operator()(int &x)
 {
@@ -59,3 +60,5 @@ int GreedyMatcher::maxMatch()
 }
 
 
+
+}

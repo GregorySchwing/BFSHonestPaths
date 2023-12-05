@@ -5,6 +5,9 @@
 #include "matchgpu.h"
 #define THREADS_PER_BLOCK 1024
 
+namespace BFSHonestPaths {
+
+
 struct is_less_than_0
 {
   __host__ __device__ int operator()(int &x);
@@ -21,5 +24,5 @@ struct GreedyMatcher
   thrust::device_vector<int> c_d;
   int *c_Pinned;
 };
-
+}
 #endif

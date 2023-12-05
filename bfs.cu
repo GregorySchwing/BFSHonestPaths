@@ -1,6 +1,8 @@
 #include "bfs.cuh"
 #include "bfs_kernels.cuh"
 
+namespace BFSHonestPaths {
+
 BFS::BFS(CSRGraph &_csr, GreedyMatcher &_gm) : csr(_csr), gm(_gm)
   {
 
@@ -131,3 +133,5 @@ int BFS::augmentNaivePaths()
   }
 
 // Implement other member functions here
+
+}

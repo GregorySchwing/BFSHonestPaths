@@ -40,7 +40,7 @@
 #include "bfs.cuh"
 
 #include <chrono>
-
+using namespace BFSHonestPaths;
 void BFSHonestWrapper(int * Rows, int * Cols, int * Matching, int n, int nnz){
     std::chrono::time_point<std::chrono::steady_clock> m_StartTime = std::chrono::steady_clock::now();
     //printf("Generating CSR with %d rows, %d columns\n",m,m);

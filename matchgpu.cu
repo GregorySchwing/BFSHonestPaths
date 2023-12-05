@@ -26,6 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "matchgpu.h"
 
+namespace BFSHonestPaths {
+
 //==== General matching kernels ====
 /*
    Match values match[i] have the following interpretation for a vertex i:
@@ -462,4 +464,6 @@ __global__ void extractUnmatched(int *match, int *unmatch, unsigned int *atomicC
 		auto ptr = atomicInc(atomicCounter,1);
 
 	}
+}
+
 }

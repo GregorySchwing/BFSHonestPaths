@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NR_MATCH_ROUNDS 20
 #define NR_MAX_MATCH_ROUNDS 256
 //#define NR_MAX_MATCH_ROUNDS 10
+namespace BFSHonestPaths {
 
 __global__ void gSelect(int *match, int *dkeepMatching, const int nrVertices, const uint random);
 __global__ void gaSelect(int *match, int *dkeepMatching, const int nrVertices, const uint random);
@@ -40,5 +41,5 @@ __global__ void gwRespond(int *requests, const int *match, const int nrVertices)
 
 //==== Helper method to extract unmatched vertices for single source
 __global__ void extractUnmatched(int *match, int *unmatch, int *atomicCounter, const int nrVertices);
-
+}
 #endif

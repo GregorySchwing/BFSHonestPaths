@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 
+namespace BFSHonestPaths {
+
 __global__ void setSuperSource_no_bloss_simple(unsigned int *CP_d, unsigned int *IC_d, unsigned int *f_d, int *S_d, float *sigma_d, int *m_d, int *search_tree_src_d, int n)
 {
   int threadId = threadIdx.x + blockIdx.x * blockDim.x;
@@ -278,3 +280,4 @@ __global__ void lift_path_parallel(int *m_d, int *pred_d, uint64_t *BTypePair_di
   }
 }
 
+}

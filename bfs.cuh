@@ -4,6 +4,8 @@
 #include "CSRGraph.cuh"
 #include "GreedyMatcher.cuh"
 
+namespace BFSHonestPaths {
+
 struct BFS
 {
   BFS(CSRGraph &_csr, GreedyMatcher &_gm);
@@ -41,4 +43,5 @@ struct BFS
   thrust::device_vector<int> m2_d;
 };
 
+}
 #endif  // BFS_CUH
