@@ -8,20 +8,18 @@ LDFLAGS = $(CFLAGS)
 NVCC=nvcc
 CUDAFLAGS = -O3 -Xptxas -O3 -Xcompiler -O3 -w 
 
-SOURCES = bipartite.cu matchgpu.cu CSRGraph.cu GreedyMatcher.cu bfs.cu
-OBJECTS = bipartite.o matchgpu.o CSRGraph.o GreedyMatcher.o bfs.o
 
-%.o: %.cu
-	${NVCC} -dc $(CUDAFLAGS) $< -o $@
+all: bfshonest_lib.a
 
-bfshonest_lib.a: ${OBJECTS}
+bfshonest_lib.a: bipartite.cu matchgpu.cu CSRGraph.cu GreedyMatcher.cu bfs.cu
+	$(NVCC) $(LDFLAGS) $(CUDAFLAGS)  -c -o bipartite.o bipartite.cu
+	$(NVCC) $(LDFLAGS) $(CUDAFLAGS)  -c -o matchgpu.o matchgpu.cu
+	$(NVCC) $(LDFLAGS) $(CUDAFLAGS)  -c -o CSRGraph.o CSRGraph.cu
+	$(NVCC) $(LDFLAGS) $(CUDAFLAGS)  -c -o GreedyMatcher.o GreedyMatcher.cu
+	$(NVCC) $(LDFLAGS) $(CUDAFLAGS)	 -c -o bfs.o bfs.cu
 	$(NVCC) -lib *.o -o bfshonest_lib.a $(LDFLAGS)
 
-clean :
-	${RM} *.o *.a Makefile.bak core
-	
-lint :
-	${LINT} ${SOURCES}
-
-depend :
-	makedepend ${SOURCES}
+clean: 
+	-rm -rf *.o *.a bfshonest_lib
+depend:
+	makedepend -Y *.cu *.c *.hpp
