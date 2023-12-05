@@ -41,10 +41,10 @@
 
 #include <chrono>
 
-void bipartite(int * Rows, int * Cols, int * Matching, int n, int m){
+void BFSHonestWrapper(int * Rows, int * Cols, int * Matching, int n, int nnz){
     std::chrono::time_point<std::chrono::steady_clock> m_StartTime = std::chrono::steady_clock::now();
     //printf("Generating CSR with %d rows, %d columns\n",m,m);
-    CSRGraph csr(n,m,Rows,Cols,Matching);
+    CSRGraph csr(n,nnz,Rows,Cols,Matching);
     
     GreedyMatcher gm(csr);
     BFS bfs(csr,gm);
