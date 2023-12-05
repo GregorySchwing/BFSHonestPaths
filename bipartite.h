@@ -20,7 +20,7 @@
 #define EXTERNC
 #endif
 
-EXTERNC void BFSHonestWrapper(int * Rows, int * Cols, int * Matching, int n, int nnz);
+EXTERNC void BFSHonestWrapper(int * Rows, int * Cols, int * Matching, int n, int nnz, int num_iterations);
 
 #undef EXTERNC
 // ...

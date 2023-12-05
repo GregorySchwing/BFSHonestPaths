@@ -10,7 +10,7 @@ struct BFS
 {
   BFS(CSRGraph &_csr, GreedyMatcher &_gm);
 
-  int augmentNaivePaths();
+  int augmentNaivePaths(int num_iterations);
 
   CSRGraph &csr;
   GreedyMatcher &gm;

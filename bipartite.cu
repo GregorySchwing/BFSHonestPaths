@@ -41,7 +41,7 @@
 
 #include <chrono>
 using namespace BFSHonestPaths;
-void BFSHonestWrapper(int * Rows, int * Cols, int * Matching, int n, int nnz){
+void BFSHonestWrapper(int * Rows, int * Cols, int * Matching, int n, int nnz, int num_iterations){
     std::chrono::time_point<std::chrono::steady_clock> m_StartTime = std::chrono::steady_clock::now();
     //printf("Generating CSR with %d rows, %d columns\n",m,m);
     CSRGraph csr(n,nnz,Rows,Cols,Matching);
@@ -59,7 +59,7 @@ void BFSHonestWrapper(int * Rows, int * Cols, int * Matching, int n, int nnz){
     std::cout << "Greedy match seconds: " << elapsedSeconds << "; edges augmented: " << numAugmented << std::endl;
     
     m_StartTime = std::chrono::steady_clock::now();
-    int numAugmented2 = bfs.augmentNaivePaths();
+    int numAugmented2 = bfs.augmentNaivePaths(num_iterations);
     m_EndTime = std::chrono::steady_clock::now();
     elapsedSeconds = std::chrono::duration_cast<std::chrono::milliseconds>(m_EndTime - m_StartTime).count() / 1000.0;  
     std::cout << "BFS seconds: " << elapsedSeconds << "; edges augmented: " << numAugmented2 << std::endl;

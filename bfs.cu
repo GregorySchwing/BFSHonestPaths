@@ -29,7 +29,7 @@ BFS::BFS(CSRGraph &_csr, GreedyMatcher &_gm) : csr(_csr), gm(_gm)
     m2_d.resize(csr.n, 0);
   }
 
-int BFS::augmentNaivePaths()
+int BFS::augmentNaivePaths(int num_iterations)
   {
 
     int numAugmented = 0;
@@ -61,7 +61,7 @@ int BFS::augmentNaivePaths()
     //  f_d[r] = 1;
     //  sigma_d[r] = 1.0;
     int dimGrid = (csr.n + THREADS_PER_BLOCK) / THREADS_PER_BLOCK;
-
+    int iteration = 0;
     do
     {
 
@@ -123,7 +123,7 @@ int BFS::augmentNaivePaths()
       cudaMemset(BTypePair_list_counter_d_ptr, 0, sizeof(*BTypePair_list_counter_d_ptr));
       cudaMemset(BTypePair_disjoint_list_counter_d_ptr, 0, sizeof(*BTypePair_disjoint_list_counter_d_ptr));
 
-    } while (BTypePair_disjoint_list_counter_h[0] > 0);
+    } while (BTypePair_disjoint_list_counter_h[0] > 0 && iteration++ < num_iterations);
     /*
     gm.m_h = gm.m_d;
     for (int i = 0; i < gm.m_h.size(); ++i)
